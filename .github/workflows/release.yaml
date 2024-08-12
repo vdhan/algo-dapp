@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  algo-dapp-contracts-validate:
+    name: Run algo-dapp-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/algo-dapp-contracts-ci.yaml
+
+  algo-dapp-contracts-release:
+    name: Run algo-dapp-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/algo-dapp-contracts-cd.yaml
+    needs: algo-dapp-contracts-validate
+
+  algo-dapp-frontend-validate:
+    name: Run algo-dapp-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/algo-dapp-frontend-ci.yaml
+
+  algo-dapp-frontend-release:
+    name: Run algo-dapp-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/algo-dapp-frontend-cd.yaml
+    needs: algo-dapp-frontend-validate

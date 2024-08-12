@@ -1,0 +1,14 @@
+name: Pull Request validation
+
+on: [pull_request]
+
+
+jobs:
+  algo-dapp-contracts-ci:
+    name: Run algo-dapp-contracts validation
+    uses: ./.github/workflows/algo-dapp-contracts-ci.yaml
+
+  algo-dapp-frontend-ci:
+    name: Run algo-dapp-frontend validation
+    uses: ./.github/workflows/algo-dapp-frontend-ci.yaml
+
