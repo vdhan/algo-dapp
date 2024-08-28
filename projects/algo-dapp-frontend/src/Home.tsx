@@ -1,9 +1,9 @@
 // src/components/Home.tsx
 import { useWallet } from '@txnlab/use-wallet'
 import React, { useState } from 'react'
+import AppCalls from './components/AppCalls'
 import ConnectWallet from './components/ConnectWallet'
 import Transact from './components/Transact'
-import AppCalls from './components/AppCalls'
 
 interface HomeProps {}
 
@@ -50,18 +50,6 @@ const Home: React.FC<HomeProps> = () => {
             <button data-test-id="connect-wallet" className="btn m-2" onClick={toggleWalletModal}>
               Wallet Connection
             </button>
-
-            {activeAddress && (
-              <button data-test-id="transactions-demo" className="btn m-2" onClick={toggleDemoModal}>
-                Transactions Demo
-              </button>
-            )}
-
-            {activeAddress && (
-              <button data-test-id="appcalls-demo" className="btn m-2" onClick={toggleAppCallsModal}>
-                Contract Interactions Demo
-              </button>
-            )}
           </div>
 
           <ConnectWallet openModal={openWalletModal} closeModal={toggleWalletModal} />
